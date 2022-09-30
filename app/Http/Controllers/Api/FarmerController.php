@@ -1046,6 +1046,91 @@ class FarmerController extends Controller
         }
     }
 
+    public function UpdateFarmerFF(Request $request){
+        try{
+            $validator = Validator::make($request->all(), [
+                'farmer_no' => 'required'         
+            ]);
+
+            if($validator->fails()){
+                $rslt =  $this->ResultReturn(400, $validator->errors()->first(), $validator->errors()->first());
+                return response()->json($rslt, 400);
+            }
+
+            $signature = $this->ReplaceNull($request->signature, 'string');
+            // $post_code = $this->ReplaceNull($request->post_code, 'string');
+            $group_no = $this->ReplaceNull($request->group_no, 'string');
+            $main_income = $this->ReplaceNull($request->main_income, 'int');
+            $side_income = $this->ReplaceNull($request->side_income, 'int');
+            $main_job = $this->ReplaceNull($request->main_job, 'string');
+            $side_job = $this->ReplaceNull($request->side_job, 'string');
+            $education = $this->ReplaceNull($request->education, 'string');
+            $non_formal_education = $this->ReplaceNull($request->non_formal_education, 'string');
+            $farmer_profile = $this->ReplaceNull($request->farmer_profile, 'string');
+
+            $getDesa = Desa::select('kode_desa','name','kode_kecamatan','post_code')->where('kode_desa','=',$request->village)->first(); 
+            $getKec = Kecamatan::select('kode_kecamatan','name','kabupaten_no')->where('kode_kecamatan','=',$getDesa->kode_kecamatan)->first(); 
+            $getKab = Kabupaten::select('kabupaten_no','name','province_code')->where('kabupaten_no','=',$getKec->kabupaten_no)->first(); 
+            $getProv = Province::select('province_code','name')->where('province_code','=',$getKab->province_code)->first();
+   
+
+
+            Farmer::where('farmer_no', '=', $request->farmer_no)
+            ->update
+            ([
+                'name' => $request->name,
+                'nickname' => $request->nickname,
+                'birthday' => $request->birthday,
+                'religion' => $request->religion,
+                'ethnic' => $request->ethnic,
+                'origin' => $request->origin,
+                'gender' => $request->gender,
+                'number_family_member' => $request->number_family_member,
+                'ktp_no' => $request->ktp_no,
+                'phone' => $request->phone,
+                'rt' => $request->rt,
+                'rw' => $request->rw,
+                'address' => $request->address,
+                'village' => $request->village,
+                'kecamatan' => $getKec->kode_kecamatan,
+                'city' => $getKab->kabupaten_no,
+                'province' => $getProv->province_code,
+                'mu_no' => $request->mu_no,
+                'mou_no' => $request->mou_no,
+                'target_area' => $request->target_area,
+                'active' => $request->active,
+                'user_id' => $request->user_id,
+                'ktp_document' => $request->ktp_document,
+                'marrital_status' => $request->marrital_status,
+                
+                'signature' => $signature,
+                'post_code' => $getDesa->post_code,
+                'group_no' => $group_no,
+                'main_income' => $main_income,
+                'side_income' => $side_income,
+                'main_job' => $main_job,
+                'side_job' => $side_job,
+                'education' => $education,
+                'non_formal_education' => $non_formal_education,
+                'farmer_profile' => $farmer_profile,               
+                
+                'updated_at'=>Carbon::now(),
+
+                'is_dell' => 0
+            ]);
+            if($group_no != "-" && $main_job != "-" && $side_job != "-" && $education != "-" && $non_formal_education != "-" && $farmer_profile != "-" )
+            {
+                Farmer::where('farmer_no', '=', $request->farmer_no)
+                ->update
+                (['complete_data' => 1]);
+            }
+            $rslt =  $this->ResultReturn(200, 'success', 'success');
+            return response()->json($rslt, 200); 
+        }catch (\Exception $ex){
+            return response()->json($ex);
+        }
+    }
+    
     /**
      * @SWG\Post(
      *   path="/api/SoftDeleteFarmer",

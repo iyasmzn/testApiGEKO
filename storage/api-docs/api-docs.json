@@ -1787,6 +1787,463 @@
                 ]
             }
         },
+        "/api/GetFarmerTrainingAll": {
+            "get": {
+                "tags": [
+                    "FarmerTrainings"
+                ],
+                "summary": "Get Farmer Trainings All",
+                "operationId": "GetFarmerTrainingAll",
+                "parameters": [
+                    {
+                        "name": "village",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/AddFarmerTraining": {
+            "post": {
+                "tags": [
+                    "FarmerTrainings"
+                ],
+                "summary": "Add Farmer Training",
+                "operationId": "AddFarmerTraining",
+                "parameters": [
+                    {
+                        "name": "Parameters",
+                        "in": "body",
+                        "description": "Add Farmer Training",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "training_no": {
+                                    "type": "string",
+                                    "example": "0909090909"
+                                },
+                                "training_date": {
+                                    "type": "date",
+                                    "example": "2021-03-20"
+                                },
+                                "1st_material": {
+                                    "type": "string",
+                                    "example": "Pelatihan Pertama"
+                                },
+                                "2nd_material": {
+                                    "type": "date",
+                                    "example": "Pelatihan kedua"
+                                },
+                                "organic_material": {
+                                    "type": "string",
+                                    "example": "Pelatihan Organik"
+                                },
+                                "program_year": {
+                                    "type": "date",
+                                    "example": "2022"
+                                },
+                                "absent": {
+                                    "type": "integer",
+                                    "example": "diisi gambar ya nanti"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "example": "Jl Cemara No 22, Kemiri, Salatiga"
+                                },
+                                "village": {
+                                    "type": "string",
+                                    "example": "33.05.10.18"
+                                },
+                                "field_coordinator": {
+                                    "type": "string",
+                                    "example": "Nama FC"
+                                },
+                                "ff_no": {
+                                    "type": "string",
+                                    "example": "FF0000001"
+                                },
+                                "mu_no": {
+                                    "type": "string",
+                                    "example": "022"
+                                },
+                                "origin": {
+                                    "type": "string",
+                                    "example": "lokal"
+                                },
+                                "gender": {
+                                    "type": "string",
+                                    "example": "male"
+                                },
+                                "number_family_member": {
+                                    "type": "int",
+                                    "example": "2"
+                                },
+                                "target_area": {
+                                    "type": "string",
+                                    "example": "test"
+                                },
+                                "status": {
+                                    "type": "int",
+                                    "example": "1"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "example": "U0002"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/UpdateFarmerTraining": {
+            "post": {
+                "tags": [
+                    "FarmerTrainings"
+                ],
+                "summary": "Update Farmer Training",
+                "operationId": "UpdateFarmerTraining",
+                "parameters": [
+                    {
+                        "name": "Parameters",
+                        "in": "body",
+                        "description": "Update Farmer Training",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "farmer_no": {
+                                    "type": "string",
+                                    "example": "F000001"
+                                },
+                                "ktp_no": {
+                                    "type": "string",
+                                    "example": "0909090909"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Budi Indra"
+                                },
+                                "birthday": {
+                                    "type": "date",
+                                    "example": "2000-10-20"
+                                },
+                                "religion": {
+                                    "type": "string",
+                                    "example": "Islam"
+                                },
+                                "rt": {
+                                    "type": "integer",
+                                    "example": "01"
+                                },
+                                "rw": {
+                                    "type": "integer",
+                                    "example": "02"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "example": "Jl Cemara No 22, Kemiri, Salatiga"
+                                },
+                                "village": {
+                                    "type": "string",
+                                    "example": "33.05.10.18"
+                                },
+                                "marrital_status": {
+                                    "type": "string",
+                                    "example": "Kawin"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "example": "085777771111"
+                                },
+                                "ethnic": {
+                                    "type": "string",
+                                    "example": "Jawa"
+                                },
+                                "origin": {
+                                    "type": "string",
+                                    "example": "lokal"
+                                },
+                                "gender": {
+                                    "type": "string",
+                                    "example": "male"
+                                },
+                                "number_family_member": {
+                                    "type": "int",
+                                    "example": "2"
+                                },
+                                "mu_no": {
+                                    "type": "string",
+                                    "example": "024"
+                                },
+                                "target_area": {
+                                    "type": "string",
+                                    "example": "test"
+                                },
+                                "active": {
+                                    "type": "int",
+                                    "example": "1"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "example": "U0002"
+                                },
+                                "ktp_document": {
+                                    "type": "int",
+                                    "example": "test"
+                                },
+                                "post_code": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "group_no": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "mou_no": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "main_income": {
+                                    "type": "int",
+                                    "example": "nullable"
+                                },
+                                "side_income": {
+                                    "type": "int",
+                                    "example": "nullable"
+                                },
+                                "main_job": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "side_job": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "education": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "non_formal_education": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                },
+                                "farmer_profile": {
+                                    "type": "string",
+                                    "example": "nullable"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/DeleteFarmerTrainingDetail": {
+            "post": {
+                "tags": [
+                    "Lahan"
+                ],
+                "summary": "Delete Farmer Training Detail",
+                "operationId": "DeleteFarmerTrainingDetail",
+                "parameters": [
+                    {
+                        "name": "Parameters",
+                        "in": "body",
+                        "description": "Delete Farmer Training Detail",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "1"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/SoftDeleteFarmerTraining": {
+            "post": {
+                "tags": [
+                    "FarmerTrainings"
+                ],
+                "summary": "Soft Delete Farmer Training",
+                "operationId": "SoftDeleteFarmer",
+                "parameters": [
+                    {
+                        "name": "Parameters",
+                        "in": "body",
+                        "description": "Soft Delete Farmer",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "2"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/DeleteFarmerTraining": {
+            "post": {
+                "tags": [
+                    "Farmers"
+                ],
+                "summary": "Delete Farmer Training",
+                "operationId": "DeleteFarmer",
+                "parameters": [
+                    {
+                        "name": "Parameters",
+                        "in": "body",
+                        "description": "Delete Farmer Training",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "2"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/GetFieldFacilitatorAllWeb": {
             "get": {
                 "tags": [

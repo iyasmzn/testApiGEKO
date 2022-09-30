@@ -23,6 +23,7 @@ Route::get('GetFarmerAllTemp', 'Api\FarmerController@GetFarmerAllTempDelete');
 Route::get('GetFarmerDetailTemp', 'Api\FarmerController@GetFarmerDetail');
 
 Route::get('GetApi', 'UserController@GetApi');
+Route::get('UpdateFarmerFF', 'Api\FarmerController@UpdateFarmerFF');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('Logout', 'UserController@Logout');
@@ -234,5 +235,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('UpdatePohonMonitoring2', 'Api\MonitoringController@UpdatePohonMonitoring2');
     Route::post('SoftDeleteMonitoring2', 'Api\MonitoringController@SoftDeleteMonitoring2');
     Route::post('ValidateMonitoring2', 'Api\MonitoringController@ValidateMonitoring2');
+
+    // Farmer Training Routers
+    Route::get('GetFarmerTrainingAll', 'Api\FarmerTrainingController@GetFarmerTrainingAll');
+    Route::get('GetFarmerTrainingAllTempDelete', 'Api\FarmerTrainingController@GetFarmerTrainingAllTempDelete');
+    Route::post('AddFarmerTraining', 'Api\FarmerTrainingController@AddFarmerTraining');
+    Route::post('UpdateFarmerTraining', 'Api\FarmerTrainingController@UpdateFarmerTraining');
+    Route::post('AddDetailFarmerTraining', 'Api\FarmerTrainingController@AddDetailFarmerTraining');
+    Route::post('UpdateFarmerTraining', 'Api\FarmerTrainingController@UpdateFarmerTraining');
+    Route::post('DeleteFarmerTrainingDetail', 'Api\FarmerTrainingController@DeleteFarmerTrainingDetail');
+    Route::post('SoftDeleteFarmerTraining', 'Api\FarmerTrainingController@SoftDeleteFarmerTraining');
+    Route::post('DeleteFarmerTraining', 'Api\FarmerTrainingController@DeleteFarmerTraining');
 
 });
